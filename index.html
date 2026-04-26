@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Scryft VM</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <main class="page">
+      <section class="stage-shell" aria-label="Scryft VM stage preview">
+        <div class="controls" aria-label="Stage controls">
+          <button class="control-button" id="playBtn" type="button" aria-label="Play">
+            <span class="icon icon-play" aria-hidden="true"></span>
+          </button>
+          <button class="control-button" id="pauseBtn" type="button" aria-label="Pause">
+            <span class="icon icon-pause" aria-hidden="true"></span>
+          </button>
+          <button class="control-button" id="stopBtn" type="button" aria-label="Stop">
+            <span class="icon icon-stop" aria-hidden="true"></span>
+          </button>
+        </div>
+
+        <div class="stage" id="stage" data-state="idle">
+          <div class="stage-glow" aria-hidden="true"></div>
+
+          <img
+            class="sprite"
+            src="https://github.com/Scryft/Scryft-gui/raw/refs/heads/main/Assets/Sprite.svg"
+            alt="Scryft sprite"
+          />
+
+          <div class="status-pill" id="statusPill">Ready</div>
+        </div>
+      </section>
+    </main>
+
+    <script src="./app.js"></script>
+  </body>
+</html>
