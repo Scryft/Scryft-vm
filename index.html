@@ -5,24 +5,97 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Scryft VM</title>
     <link rel="stylesheet" href="./styles.css" />
+
+    <style>
+      .controls {
+        display: flex;
+        gap: 14px;
+        position: absolute;
+        top: 10px;
+        left: 12px;
+        z-index: 10;
+      }
+
+      .control-button {
+        width: 34px;
+        height: 34px;
+        border: none;
+        background: transparent;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      svg {
+        width: 22px;
+        height: 22px;
+        display: block;
+      }
+
+      /* Pause state swapping */
+      .pause-icon,
+      .pause-triangle {
+        display: none;
+      }
+
+      #pauseBtn .pause-icon {
+        display: block;
+      }
+
+      #pauseBtn.paused .pause-icon {
+        display: none;
+      }
+
+      #pauseBtn.paused .pause-triangle {
+        display: block;
+      }
+    </style>
   </head>
+
   <body>
     <main class="page">
       <section class="stage-shell" aria-label="Scryft VM stage preview">
+        
         <div class="controls" aria-label="Stage controls">
-          <button class="control-button" id="playBtn" type="button" aria-label="Play">
-            <span class="icon icon-play" aria-hidden="true"></span>
+
+          <!-- PLAY (blue circle) -->
+          <button class="control-button" id="playBtn" aria-label="Play">
+            <svg viewBox="0 0 24 24">
+              <circle cx="12" cy="12" r="10" fill="#1e90ff"/>
+            </svg>
           </button>
-          <button class="control-button" id="pauseBtn" type="button" aria-label="Pause">
-            <span class="icon icon-pause" aria-hidden="true"></span>
+
+          <!-- PAUSE -->
+          <button class="control-button" id="pauseBtn" aria-label="Pause">
+
+            <!-- Pause bars -->
+            <svg class="pause-icon" viewBox="0 0 24 24">
+              <rect x="5" y="4" width="5" height="16" fill="orange"/>
+              <rect x="14" y="4" width="5" height="16" fill="orange"/>
+            </svg>
+
+            <!-- Right-pointing triangle -->
+            <svg class="pause-triangle" viewBox="0 0 24 24">
+              <polygon points="8,5 18,12 8,19" fill="orange"/>
+            </svg>
+
           </button>
-          <button class="control-button" id="stopBtn" type="button" aria-label="Stop">
-            <span class="icon icon-stop" aria-hidden="true"></span>
+
+          <!-- STOP (purple octagon) -->
+          <button class="control-button" id="stopBtn" aria-label="Stop">
+            <svg viewBox="0 0 24 24">
+              <polygon
+                points="7,2 17,2 22,7 22,17 17,22 7,22 2,17 2,7"
+                fill="#8a2be2"
+              />
+            </svg>
           </button>
+
         </div>
 
         <div class="stage" id="stage" data-state="idle">
-          <div class="stage-glow" aria-hidden="true"></div>
+          <div class="stage-glow"></div>
 
           <img
             class="sprite"
@@ -36,5 +109,13 @@
     </main>
 
     <script src="./app.js"></script>
+
+    <script>
+      const pauseBtn = document.getElementById("pauseBtn");
+
+      pauseBtn.addEventListener("click", () => {
+        pauseBtn.classList.toggle("paused");
+      });
+    </script>
   </body>
 </html>
